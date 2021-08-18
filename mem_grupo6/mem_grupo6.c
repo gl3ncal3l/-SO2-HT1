@@ -31,7 +31,6 @@ static int writeFile(struct seq_file* archivo, void *v){
 
     seq_printf(archivo, "Memoria total: %lu MB\n", memoria_total/1024);
     seq_printf(archivo, "Memoria libre: %lu MB\n", memoria_libre/1024);
-    seq_printf(archivo, "Memoria consumida: %lu MB\n", memoria_uso/1024);
     seq_printf(archivo, "Memoria en uso: %lu MB\n", (memoria_uso * 100)/memoria_total);
     
     return 0;
@@ -47,13 +46,13 @@ static struct file_operations ops = {
 };
 
 static int load_module(void){   
-    proc_create("mod0", 0, NULL, &ops);
+    proc_create("mem_grupo6", 0, NULL, &ops);
     printk(KERN_INFO "Hola Grupo 6\n");
     return 0;
 }
 
 static void unload_module(void){
-    remove_proc_entry("mod0", NULL);
+    remove_proc_entry("mem_grupo6", NULL);
     printk(KERN_INFO "Adiós Grupo 6\n");
 }
 

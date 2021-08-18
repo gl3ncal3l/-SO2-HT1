@@ -1,4 +1,4 @@
-obj-m += mod0.o
+obj-m += mem_grupo6.o
 
 all:
 	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) modules
