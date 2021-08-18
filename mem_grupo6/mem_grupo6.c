@@ -27,10 +27,12 @@ static int writeFile(struct seq_file* archivo, void *v){
     memoria_buffer = (inf.bufferram * 4);
     memoria_compartida = (inf.sharedram * 4);
     memoria_freehigh = (inf.freehigh * 4);
-    memoria_uso = memoria_total - (memoria_libre + memoria_compartida + memoria_buffer * 2);
+    memoria_uso = memoria_total - (memoria_libre + memoria_compartida + memoria_buffer);
 
     seq_printf(archivo, "Memoria total: %lu MB\n", memoria_total/1024);
     seq_printf(archivo, "Memoria libre: %lu MB\n", memoria_libre/1024);
+    seq_printf(archivo, "Memoria buffer: %lu MB\n", memoria_buffer/1024);
+    seq_printf(archivo, "Memoria shared: %lu MB\n", memoria_compartida/1024);
     seq_printf(archivo, "Memoria en uso: %lu MB\n", memoria_uso/1024);
     
     return 0;
