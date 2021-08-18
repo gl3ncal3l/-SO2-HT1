@@ -31,7 +31,7 @@ static int writeFile(struct seq_file* archivo, void *v){
 
     seq_printf(archivo, "Memoria total: %lu MB\n", memoria_total/1024);
     seq_printf(archivo, "Memoria libre: %lu MB\n", memoria_libre/1024);
-    seq_printf(archivo, "Memoria en uso: %lu MB\n", (memoria_uso * 100)/memoria_total);
+    seq_printf(archivo, "Memoria en uso: %lu MB\n", memoria_uso/1024);
     
     return 0;
 }
