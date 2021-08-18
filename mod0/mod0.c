@@ -10,7 +10,7 @@ MODULE_AUTHOR("Grupo 6");
 MODULE_DESCRIPTION("Basic module");
 MODULE_VERSION("1.0");
 
-static int writeFile(struct seq_file* archivo, void ){
+static int writeFile(struct seq_file* archivo, void *v){
     struct sysinfo inf;
 
     long memoria_total;
