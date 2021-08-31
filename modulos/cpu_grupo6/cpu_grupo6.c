@@ -36,20 +36,20 @@ struct list_head *list;
 
 static int writeFile(struct seq_file* archivo, void *v){
 
-    seq_printf(file_proc, "[");
+    seq_printf(archivo, "[");
     // Macro para iterar a través de cada tarea en el sistema operativo ubicado en linux/sched/signal.h
     for_each_process(task_list) {
-            seq_printf(file_proc,"{\"pid\":%d,\"nombre\":\"%s\",\"estado\":%ld,\"ram\":%ld,\"usuario\":%u,\"hijos\":[", task_list->pid,task_list->comm,task_list->state,(task_list->mm != NULL? get_mm_rss(task_list->mm): 0)/1024,(task_list->cred-> uid.val));
+            seq_printf(archivo,"{\"pid\":%d,\"nombre\":\"%s\",\"estado\":%ld,\"ram\":%ld,\"usuario\":%u,\"hijos\":[", task_list->pid,task_list->comm,task_list->state,(task_list->mm != NULL? get_mm_rss(task_list->mm): 0)/1024,(task_list->cred-> uid.val));
             // Macro para iterar a través de la estructura task->children
             list_for_each(list, &task_list->children){ 
                 // Se utiliza list_entry para decarar todas las variables en la estructura task_child      
                 task_list_child = list_entry( list, struct task_struct, sibling );             
-                seq_printf(file_proc,"{\"pid\":%d,\"nombre\":\"%s\",\"estado\":%ld,\"ram\":%ld,\"usuario\":%u},",task_list_child->pid, task_list_child->comm, task_list_child->state,(task_list_child->mm != NULL? get_mm_rss(task_list_child->mm): 0)/1024,(task_list_child->cred-> uid.val));
+                seq_printf(archivo,"{\"pid\":%d,\"nombre\":\"%s\",\"estado\":%ld,\"ram\":%ld,\"usuario\":%u},",task_list_child->pid, task_list_child->comm, task_list_child->state,(task_list_child->mm != NULL? get_mm_rss(task_list_child->mm): 0)/1024,(task_list_child->cred-> uid.val));
             }
-            seq_printf(file_proc, "]},");
+            seq_printf(archivo, "]},");
     }
     
-    seq_printf(file_proc, "]");
+    seq_printf(archivo, "]");
     return 0;
 }
 
