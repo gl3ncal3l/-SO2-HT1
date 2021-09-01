@@ -34,10 +34,10 @@ static int writeFile(struct seq_file* archivo, void *v){
     memoria_freehigh = (inf.freehigh * 4);
     memoria_uso = memoria_total - (memoria_libre + memoria_compartida + memoria_buffer);
 
-    seq_printf(archivo, "{\ntotal: %lu MB\n", memoria_total/1024);
-    seq_printf(archivo, "libre: %lu MB\n", memoria_libre/1024);
-    seq_printf(archivo, "uso: %lu MB\n", memoria_uso/1024);
-    seq_printf(archivo, "consumida: %lu MB\n}", (memoria_uso * 100)/memoria_total);
+    seq_printf(archivo, "{\n\"total\":%lu,\n", memoria_total/1024);
+    seq_printf(archivo, "\"libre\":%lu,\n", memoria_libre/1024);
+    seq_printf(archivo, "\"uso\":%lu,\n", memoria_uso/1024);
+    seq_printf(archivo, "\"consumida\":%lu\n}", (memoria_uso * 100)/memoria_total);
     
     return 0;
 }

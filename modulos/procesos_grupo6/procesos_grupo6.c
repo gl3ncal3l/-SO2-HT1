@@ -65,14 +65,14 @@ static struct file_operations ops = {
 };
 
 static int load_module(void){   
-    proc_create("cpu_grupo6", 0, NULL, &ops);
-    printk(KERN_INFO "Hola mundo, somos el grupo 6 y este es el monitor de memoria\n");
+    proc_create("procesos_grupo6", 0, NULL, &ops);
+    printk(KERN_INFO "Hola mundo, somos el grupo 6 y este es el monitor de procesos\n");
     return 0;
 }
 
 static void unload_module(void){
-    remove_proc_entry("cpu_grupo6", NULL);
-    printk(KERN_INFO "Sayonara mundo, somos el grupo 6 y este fue el monitor de memoria\n");
+    remove_proc_entry("procesos_grupo6", NULL);
+    printk(KERN_INFO "Sayonara mundo, somos el grupo 6 y este fue el monitor de procesos\n");
 }
 
 module_init(load_module);
